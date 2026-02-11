@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Can Buïgas</title>
+  <link rel="stylesheet" href="panel-admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <main class="admin-container">
+    <header class="admin-header">
+      <h1>Administrador — Can Buïgas</h1>
+      <div class="header-actions">
+        <button id="logoutBtn" class="small-btn">Salir</button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" data-target="menu-tab">Menú del Día</button>
+      <button class="tab-btn" data-target="db-tab">Base de Datos</button>
+      <button class="tab-btn" data-target="share-tab">Compartir</button>
+    </nav>
+
+    <section id="menu-tab" class="tab-panel active">
+      <div class="form-row">
+        <label>Fecha <input type="date" id="menuDate"></label>
+        <label>Precio <input type="text" id="menuPrice" value="25€"></label>
+        <label>Incluye <input type="text" id="menuIncludes" value="Pan artesano, agua y café o infusión"></label>
+      </div>
+
+      <div class="section">
+        <h3>Primeros (4)</h3>
+        <div class="selectors" id="firstSelectors"></div>
+        <div class="compact-grid" id="firstCoursesContainer"></div>
+      </div>
+
+      <div class="section">
+        <h3>Segundos (4)</h3>
+        <div class="selectors" id="secondSelectors"></div>
+        <div class="compact-grid" id="secondCoursesContainer"></div>
+      </div>
+
+      <div class="section">
+        <h3>Suplementos (opcionales)</h3>
+        <div id="supplementsContainer"></div>
+        <button id="addSupplementBtn" class="small-btn" style="width:100%; margin-top:10px;">Añadir Suplemento</button>
+        <p style="color:#888; font-size:0.9rem; margin-top:8px;">Los suplementos se cobran por separado (ej. Copa de vino +4€)</p>
+      </div>
+
+      <div class="actions-row">
+        <button id="saveMenuBtn" class="action-btn save-btn">Guardar Menú</button>
+        <button id="previewBtn" class="action-btn print-btn">Vista Previa</button>
+      </div>
+
+      <div class="preview" id="menuPreview"></div>
+    </section>
+
+    <section id="db-tab" class="tab-panel">
+      <h3>Base de datos de platos</h3>
+      <form id="addDishForm" class="add-dish-form">
+        <label>Categoria
+          <select id="newDishCategory">
+            <option value="first_courses">Primeros</option>
+            <option value="second_courses">Segundos</option>
+            <option value="desserts">Postres</option>
+          </select>
+        </label>
+        <label>Nombre (ES) <input id="newDishNameEs" required></label>
+        <label>Imagen / Emoji <input id="newDishImage"></label>
+        <button type="submit" class="small-btn">Añadir</button>
+      </form>
+
+      <div id="databaseDishes" class="database-grid"></div>
+    </section>
+
+    <section id="share-tab" class="tab-panel">
+      <h3>Compartir / Descargar</h3>
+      <div class="share-actions">
+        <button id="downloadImageBtn" class="action-btn save-btn">Descargar Imagen</button>
+        <button id="printBtn" class="action-btn print-btn">Imprimir</button>
+      </div>
+    </section>
+
+    <footer class="admin-footer">Panel de administración — Solo uso autorizado</footer>
+  </main>
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="panel-admin.js" defer></script>
+</body>
+</html>

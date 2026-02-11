@@ -1,0 +1,166 @@
+:root{--gold:#D4AF37;--bg:#1d1d1d;--muted:#888}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+*{box-sizing:border-box}
+body{font-family:Segoe UI,Arial;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);min-height:100vh;padding:24px;color:#fff}
+.admin-container{max-width:1100px;margin:0 auto;background:rgba(20,20,20,.98);border-radius:12px;border:2px solid var(--gold);overflow:hidden}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.03)}
+.admin-header h1{color:var(--gold);font-size:1.1rem}
+.tabs{display:flex;background:#111;border-bottom:1px solid rgba(255,255,255,.03)}
+.tab-btn{flex:1;padding:12px;border:0;background:none;color:#fff;cursor:pointer}
+.tab-btn.active{background:var(--gold);color:#000;font-weight:700}
+.tab-panel{display:none;padding:18px}
+.tab-panel.active{display:block}
+.form-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.form-row label{display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--muted)}
+.section{margin:14px 0;padding:12px;border-radius:8px;background:rgba(255,255,255,.02)}
+.selectors{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.dish-selector{padding:9px;border-radius:6px;background:#333;border:1px solid #444;color:#fff}
+.compact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compact-dish-card{background:rgba(255,255,255,.03);padding:10px;border-radius:8px;border:1px solid #333}
+.action-btn{padding:10px 14px;border-radius:6px;border:0;cursor:pointer}
+.save-btn{background:var(--gold);color:#000}
+.print-btn{background:#28a745;color:#fff}
+.share-btn{background:#4267B2;color:#fff}
+
+/* Preview / Print styles to match the elegant menu */
+.preview{margin-top:14px}
+/* apply same rules whether nested or not so the print window receives styles */
+.preview .preview-page, .preview-page{width:21cm;max-width:800px;margin:0 auto;background:#EFE6DC;padding:2cm;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,0.08);font-family:'Playfair Display',serif;color:#2b2b2b}
+.preview .preview-header, .preview-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.preview .menu-title, .menu-title{font-size:34px;letter-spacing:2px;color:#2b2b2b}
+.preview .price-badge, .price-badge{width:120px;height:120px;border-radius:999px;background:#C2A97F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;box-shadow:0 6px 16px rgba(0,0,0,0.12)}
+.menu-container{display:grid;grid-template-columns:1fr;gap:18px}
+.menu-section{background:#fff;padding:22px;border-radius:6px;border:2px solid rgba(200,180,150,0.6);box-shadow:0 10px 24px rgba(0,0,0,0.06)}
+.box-title{text-align:center;font-size:20px;font-weight:700;margin-bottom:10px;color:#3b3b3b}
+.menu-list{list-style:none;padding:0;margin:0;text-align:center}
+.menu-list li{padding:6px 0;font-size:15px;color:#2b2b2b}
+.menu-footer{margin-top:18px;text-align:center;color:#555;font-size:13px}
+
+/* A4 print page and improved print sizing */
+@page { size: A4 portrait; margin: 6mm; }
+
+/* Ensure it prints nicely and fill page */
+@media print{
+  html, body { height: 100%; margin: 0; background: white; }
+  /* Force accurate color printing where supported */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Make the preview page exactly A4 inside the print area and reduce padding to maximize usable space */
+  .preview .preview-page, .preview-page {
+    width: calc(210mm - 12mm); /* leave room for page margins */
+    height: calc(297mm - 12mm);
+    max-width: none;
+    margin: 0;
+    padding: 10mm;
+    box-shadow: none;
+    border-radius: 0 !important;
+    background: #ffffff; /* white background to save ink */
+  }
+
+  /* Slightly tighten typography to better fit A4 */
+  .preview .menu-title, .menu-title { font-size: 30px !important; }
+  .preview .price-badge, .price-badge { width: 110px !important; height: 110px !important; font-size: 20px !important; }
+  .preview .menu-list li, .menu-list li { font-size: 14px !important; }
+  .preview .menu-section, .menu-section { padding: 16px !important; border: 1px solid rgba(200,180,150,0.6) !important; background: #ffffff !important; }
+
+  .admin-container, .tabs, .tab-btn, .action-btn { display: none !important; }
+}
+
+/* Screen view: make preview visually large but centered */
+.preview .preview-page, .preview-page { max-width: 21cm; min-height: 29.7cm; }
+.preview .price-badge, .price-badge { transform: translateY(-10px); }
+
+
+.add-dish-form{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+.database-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px}
+.small-btn{padding:8px 10px;border-radius:6px;border:0;cursor:pointer}
+.admin-footer{padding:12px;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(255,255,255,.03)}
+/* Garantizar que la impresión sea EXACTAMENTE 1 página A4 sin escalado */
+@media print {
+  /* Forzar tamaño A4 exacto sin márgenes adicionales */
+  @page {
+    size: A4 portrait !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Eliminar cualquier espacio extra del body */
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Contenedor principal que ocupa toda la página A4 */
+  .preview .preview-page, .preview-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 15mm !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    position: relative !important;
+  }
+  
+  /* Asegurar que el contenido no exceda el espacio disponible */
+  .menu-container {
+    max-height: calc(297mm - 50mm) !important; /* Altura total menos header/footer */
+    overflow: hidden !important;
+  }
+  
+  /* Evitar que los elementos se dividan en páginas */
+  .menu-section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-before: avoid !important;
+  }
+  
+  /* Ajustes de tamaño para que todo quepa en 1 página */
+  .preview .menu-title, .menu-title {
+    font-size: 26px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .preview .price-badge, .price-badge {
+    width: 90px !important;
+    height: 90px !important;
+    font-size: 18px !important;
+    transform: none !important;
+  }
+  
+  .preview .menu-section, .menu-section {
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .preview .box-title, .box-title {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .preview .menu-list li, .menu-list li {
+    padding: 4px 0 !important;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
+  
+  .preview .menu-footer, .menu-footer {
+    margin-top: 10px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Desactivar cualquier transformación que pueda causar escalado */
+  * {
+    transform: none !important;
+    scale: 1 !important;
+    zoom: 1 !important;
+  }
+}

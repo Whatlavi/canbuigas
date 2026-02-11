@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Restaurante Can Buïgas - Experiencia culinaria de lujo con cocina moderna y tradicional">
+    <title>Can Buïgas</title>
+    <!-- BANDERAS SVG - IMPORTANTE: Esta línea va PRIMERA -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Selector de idioma inicial - CON BANDERAS SVG PROFESIONALES -->
+    <div id="languageSelector" class="language-modal" style="display: flex;">
+        <div class="language-modal-content">
+            <div class="language-header">
+                <h2>Can Buïgas</h2>
+                <p class="select-text">Selecciona tu idioma</p>
+                <p class="select-subtext">Select your language / 选择您的语言 / अपनी भाषा चुनें</p>
+            </div>
+            <div class="language-options">
+                <!-- Primer fila: Idiomas principales -->
+                <button class="language-btn" data-lang="es">
+                    <span class="flag-icon fi fi-es"></span>
+                    <span class="lang-name">Español</span>
+                    <span class="lang-native">Spanish</span>
+                </button>
+                <button class="language-btn" data-lang="ca">
+                    <span class="flag-icon fi fi-es-ct"></span>
+                    <span class="lang-name">Català</span>
+                    <span class="lang-native">Catalan</span>
+                </button>
+                <button class="language-btn" data-lang="en">
+                    <span class="flag-icon fi fi-gb"></span>
+                    <span class="lang-name">English</span>
+                    <span class="lang-native">English</span>
+                </button>
+                <button class="language-btn" data-lang="zh">
+                    <span class="flag-icon fi fi-cn"></span>
+                    <span class="lang-name">中文</span>
+                    <span class="lang-native">Chinese</span>
+                </button>
+                <button class="language-btn" data-lang="hi">
+                    <span class="flag-icon fi fi-in"></span>
+                    <span class="lang-name">हिन्दी</span>
+                    <span class="lang-native">Hindi</span>
+                </button>
+                
+                <!-- Segunda fila: Más idiomas -->
+                <button class="language-btn" data-lang="fr">
+                    <span class="flag-icon fi fi-fr"></span>
+                    <span class="lang-name">Français</span>
+                    <span class="lang-native">French</span>
+                </button>
+                <button class="language-btn" data-lang="de">
+                    <span class="flag-icon fi fi-de"></span>
+                    <span class="lang-name">Deutsch</span>
+                    <span class="lang-native">German</span>
+                </button>
+                <button class="language-btn" data-lang="ar">
+                    <span class="flag-icon fi fi-sa"></span>
+                    <span class="lang-name">العربية</span>
+                    <span class="lang-native">Arabic</span>
+                </button>
+                <button class="language-btn" data-lang="ru">
+                    <span class="flag-icon fi fi-ru"></span>
+                    <span class="lang-name">Русский</span>
+                    <span class="lang-native">Russian</span>
+                </button>
+                
+                <!-- Tercera fila: Más idiomas -->
+                <button class="language-btn" data-lang="ja">
+                    <span class="flag-icon fi fi-jp"></span>
+                    <span class="lang-name">日本語</span>
+                    <span class="lang-native">Japanese</span>
+                </button>
+                <button class="language-btn" data-lang="pt">
+                    <span class="flag-icon fi fi-pt"></span>
+                    <span class="lang-name">Português</span>
+                    <span class="lang-native">Portuguese</span>
+                </button>
+                <button class="language-btn" data-lang="it">
+                    <span class="flag-icon fi fi-it"></span>
+                    <span class="lang-name">Italiano</span>
+                    <span class="lang-native">Italian</span>
+                </button>
+                <button class="language-btn" data-lang="ko">
+                    <span class="flag-icon fi fi-kr"></span>
+                    <span class="lang-name">한국어</span>
+                    <span class="lang-native">Korean</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;" id="adminAccess">
+        <!-- Enlace oculto que solo aparece con combinación de teclas -->
+    </div>
+
+    <script>
+        // Acceso secreto: Presionar Ctrl+Alt+M
+        document.addEventListener('DOMContentLoaded', function() {
+            let keySequence = [];
+            const secretCode = ['Control', 'Alt', 'm'];
+            
+            const adminDiv = document.getElementById('adminAccess');
+            if (!adminDiv) return;
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Control' || e.key === 'Alt' || e.key.toLowerCase() === 'm') {
+                    keySequence.push(e.key.toLowerCase());
+                    
+                    if (keySequence.length > 3) {
+                        keySequence.shift();
+                    }
+                    
+                    if (keySequence.length === 3) {
+                        const matches = keySequence[0] === 'control' && 
+                                    keySequence[1] === 'alt' && 
+                                    keySequence[2] === 'm';
+                        
+                        if (matches) {
+                            adminDiv.style.display = 'block';
+                            adminDiv.innerHTML = `
+                                <div class="admin-panel">
+                                    <div class="admin-content">
+                                        <strong>🔓 PANEL DE ADMINISTRACIÓN</strong>
+                                        <div class="admin-links">
+                                            <a href="panel-admin.html" target="_blank" class="admin-link">
+                                                <i class="fas fa-edit"></i> Editar Menú Diario
+                                            </a>
+                                            <a href="#" class="admin-link" onclick="updateMenuFromLocalStorage()">
+                                                <i class="fas fa-sync"></i> Actualizar Menú Actual
+                                            </a>
+                                            <a href="#" class="admin-link" onclick="resetDailyMenu()">
+                                                <i class="fas fa-redo"></i> Restaurar Menú Original
+                                            </a>
+                                        </div>
+                                        <button onclick="hideAdminPanel()" class="admin-close-btn">
+                                            <i class="fas fa-times"></i> Cerrar Panel
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            keySequence = [];
+                            e.preventDefault();
+                            
+                            setTimeout(hideAdminPanel, 30000);
+                        }
+                    }
+                } else {
+                    keySequence = [];
+                }
+            });
+        });
+
+        function hideAdminPanel() {
+            const adminDiv = document.getElementById('adminAccess');
+            if (adminDiv) {
+                adminDiv.style.display = 'none';
+                adminDiv.innerHTML = '';
+            }
+        }
+
+        function updateMenuFromLocalStorage() {
+            const savedMenu = localStorage.getItem('canbuigas_daily_menu');
+            if (savedMenu) {
+                try {
+                    const menuData = JSON.parse(savedMenu);
+                    alert('Menú actualizado desde el almacenamiento local');
+                    
+                    if (window.updateDailyMenuOnPage) {
+                        window.updateDailyMenuOnPage(menuData);
+                    }
+                    
+                    if (window.addSocialButtons) {
+                        window.addSocialButtons();
+                    }
+                } catch (e) {
+                    alert('Error al cargar el menú: ' + e.message);
+                }
+            } else {
+                alert('No hay menú guardado en el almacenamiento local');
+            }
+        }
+
+        function resetDailyMenu() {
+            if (confirm('¿Estás seguro de que quieres restaurar el menú original? Se perderán los cambios actuales.')) {
+                localStorage.removeItem('canbuigas_daily_menu');
+                localStorage.setItem('canbuigas_menu_updated', Date.now().toString());
+                
+                alert('Menú restaurado al original. Recarga la página para ver los cambios.');
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            }
+        }
+    </script>
+
+    <style>
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #D4AF37;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 9999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid black;
+            max-width: 300px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .admin-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .admin-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: black;
+            text-decoration: none;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .admin-link:hover {
+            background: rgba(255, 255, 255, 0.4);
+            text-decoration: underline;
+        }
+
+        .admin-close-btn {
+            margin-top: 5px;
+            background: black;
+            color: #D4AF37;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .admin-close-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+    <!-- Cabecera -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Can Buïgas</h1>
+                    <p class="tagline">Experiencia Gastronómica</p>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active" data-i18n="home">Inicio</a>
+                    <a href="#menu" class="nav-link" data-i18n="menu">Carta</a>
+                    <a href="#daily-menu" class="nav-link" data-i18n="dailyMenu">Menú del Día</a>
+                    <a href="#contact" class="nav-link" data-i18n="contact">Contacto</a>
+                    
+                    <!-- Selector de idiomas en navbar -->
+                    <div class="language-switcher">
+                        <div class="current-language" id="currentLanguageDisplay">
+                            <span class="flag-icon-mini fi fi-es" id="currentFlag"></span>
+                            <span id="currentLanguageText">Español</span>
+                            <div class="select-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <ul class="language-dropdown" id="languageDropdown">
+                            <li class="language-option" data-value="es" data-flag="fi-es" data-text="Español">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-es"></span>
+                                    Español
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="ca" data-flag="fi-ad" data-text="Català">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-es-ct"></span>
+                                    Català
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="en" data-flag="fi-gb" data-text="English">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-gb"></span>
+                                    English
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="zh" data-flag="fi-cn" data-text="中文">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-cn"></span>
+                                    中文
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="hi" data-flag="fi-in" data-text="हिन्दी">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-in"></span>
+                                    हिन्दी
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="fr" data-flag="fi-fr" data-text="Français">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-fr"></span>
+                                    Français
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="de" data-flag="fi-de" data-text="Deutsch">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-de"></span>
+                                    Deutsch
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="ar" data-flag="fi-sa" data-text="العربية">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-sa"></span>
+                                    العربية
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="ru" data-flag="fi-ru" data-text="Русский">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-ru"></span>
+                                    Русский
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="ja" data-flag="fi-jp" data-text="日本語">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-jp"></span>
+                                    日本語
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="pt" data-flag="fi-pt" data-text="Português">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-pt"></span>
+                                    Português
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="it" data-flag="fi-it" data-text="Italiano">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-it"></span>
+                                    Italiano
+                                </span>
+                            </li>
+                            <li class="language-option" data-value="ko" data-flag="fi-kr" data-text="한국어">
+                                <span class="flag-option">
+                                    <span class="flag-icon-mini fi fi-kr"></span>
+                                    한국어
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Sección Hero -->
+        <section id="home" class="hero">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h2 class="hero-title" data-i18n="heroTitle">Can Buïgas</h2>
+                    <a href="#menu" class="btn-primary" data-i18n="viewMenu">Carta</a>
+                    <a href="#daily-menu" class="btn-secondary" data-i18n="viewDailyMenu">Menú del Día</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Menú -->
+        <section id="menu" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="ourMenu">Nuestra Carta</h2>
+                
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="all" data-i18n="all">Todos</button>
+                    <button class="category-btn" data-category="sugerencias" data-i18n="suggestions">Sugerencias</button>
+                    <button class="category-btn" data-category="menus" data-i18n="menus">Menús</button>
+                    <button class="category-btn" data-category="starters" data-i18n="starters">Entrantes</button>
+                    <button class="category-btn" data-category="main" data-i18n="mainCourses">Platos Principales</button>
+                    <button class="category-btn" data-category="ensaladas" data-i18n="salads">Ensaladas</button>
+                    <button class="category-btn" data-category="mariscos" data-i18n="seafood">Mariscos</button>
+                    <button class="category-btn" data-category="arroces" data-i18n="riceDishes">Arroces</button>
+                    <button class="category-btn" data-category="ternera" data-i18n="beef">Ternera</button>
+                    <button class="category-btn" data-category="tortillas" data-i18n="tortillas">Tortillas</button>
+                    <button class="category-btn" data-category="jamon" data-i18n="ham">Jamón</button>
+                    <button class="category-btn" data-category="torradas" data-i18n="torradas">Torradas</button>
+                    <button class="category-btn" data-category="vinos" data-i18n="wines">Vinos</button>
+                    <button class="category-btn" data-category="desserts" data-i18n="desserts">Postres</button>
+                    <button class="category-btn" data-category="drinks" data-i18n="drinks">Bebidas</button>
+                </div>
+                
+                <div class="menu-items">
+                    <!-- Los elementos del menú se cargan dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Menú del Día -->
+        <section id="daily-menu" class="section dark-section">
+            <div class="container">
+                <div class="daily-menu-container">
+                    <div class="preview" id="mainMenuPreview"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contactUs">Sobre Nosotros</h2>
+                <p class="section-subtitle" data-i18n="contactSubtitle">Reserva tu mesa o solicita información</p>
+                
+                <div class="contact-container" style="display: flex; flex-direction: row; gap: 40px; margin-bottom: 40px;">
+                    <!-- Información de contacto organizada -->
+                    <div class="contact-info" style="flex: 1;">
+                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
+                            <div>
+                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="address">Dirección</h3>
+                                <p style="margin: 0; line-height: 1.5;">Plaça d'Eguilaz, n9<br>Sarrià-Sant Gervasi<br>08017 Barcelona</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+                            <i class="fas fa-phone" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
+                            <div>
+                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="phone">Teléfono</h3>
+                                <p style="margin: 0 0 10px 0; font-size: 1.3rem; font-weight: bold;">
+                                    <a href="tel:+34622249736" style="color: white; text-decoration: none;">+34 622 249 736</a>
+                                </p>
+                                <p style="margin: 0; font-size: 0.9rem; color: #ccc;">
+                                    Para reservas y consultas
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+                            <i class="fas fa-clock" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
+                            <div>
+                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="hours">Horario</h3>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                    <div>
+                                        <strong style="color: #D4AF37;">Lunes:</strong><br>
+                                        8:00 - 22:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Martes:</strong><br>
+                                        8:00 - 23:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Miércoles:</strong><br>
+                                        8:00 - 23:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Jueves:</strong><br>
+                                        8:00 - 23:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Viernes:</strong><br>
+                                        8:00 - 23:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Sábado:</strong><br>
+                                        8:00 - 23:00
+                                    </div>
+                                    <div>
+                                        <strong style="color: #D4AF37;">Domingo:</strong><br>
+                                        11:00 - 17:00
+                                    </div>
+                                </div>
+                                <p style="margin-top: 15px; font-size: 0.9rem; color: #D4AF37; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Horario sujeto a cambios en días festivos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Espacio para redes sociales o información adicional -->
+                    <div class="contact-form" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3);">
+                            <h3 style="color: #D4AF37; margin-top: 0; margin-bottom: 15px;">
+                                <i class="fas fa-calendar-check"></i> Reservas
+                            </h3>
+                            <p style="margin-bottom: 20px; line-height: 1.6;">
+                                Para hacer una reserva, por favor llámenos directamente al teléfono indicado. 
+                                Las reservas online no están disponibles actualmente.
+                            </p>
+                            
+                            <div style="text-align: center; margin-top: 25px;">
+                                <a href="tel:+34622249736" style="display: inline-flex; align-items: center; gap: 10px; background: #D4AF37; color: black; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                                    <i class="fas fa-phone"></i>
+                                    Reservar por teléfono
+                                </a>
+                            </div>
+                            
+                            <div style="margin-top: 25px;">
+                                <h4 style="color: #D4AF37; margin-bottom: 10px;">Síguenos</h4>
+                                <div style="display: flex; gap: 15px;">
+                                    <a href="https://www.facebook.com/franklin.lascanoruiz" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fab fa-facebook"></i> Facebook
+                                    </a>
+                                    <a href="https://www.instagram.com/restaurantecanbuigas/?hl=es" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fab fa-instagram"></i> Instagram
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mapa -->
+                <div class="map-container">
+                    <h3 style="color: #D4AF37; text-align: center; margin-bottom: 20px;">Ubicación de Can Buïgas</h3>
+                    <div class="map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.1475730001174!2d2.129970976886204!3d41.39513627926307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4991c4a5f8cd7%3A0x392c3f830c160bbf!2sCan%20Bu%C3%AFgas!5e0!3m2!1ses!2ses!4v1712345678901!5m2!1ses!2ses"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ubicación de Can Buïgas en Google Maps">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Can Buïgas</h3>
+                <p data-i18n="footerDescription">Restaurante de gastronomía moderna con ingredientes de máxima calidad y presentación exquisita.</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="quickLinks">Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#home" data-i18n="home">Inicio</a></li>
+                    <li><a href="#menu" data-i18n="menu">Carta</a></li>
+                    <li><a href="#daily-menu" data-i18n="dailyMenu">Menú del Día</a></li>
+                    <li><a href="#contact" data-i18n="contact">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="followUs">Síguenos</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/franklin.lascanoruiz" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/restaurantecanbuigas/?hl=es" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Restaurante Can Buïgas. <span data-i18n="allRightsReserved">Todos los derechos reservados.</span></p>
+            <p class="language-credit" data-i18n="languageSupport">Disponible en 12 idiomas</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="daily-menu.js" defer></script>
+    <script src="script.js"></script>
+</body>
+</html>
