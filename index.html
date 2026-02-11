@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Restaurante Can Buïgas - Experiencia culinaria de lujo con cocina moderna y tradicional">
-    <meta name="google-site-verification" content="yxM5GRIVg48OOhl_nk9Ubcq2UihA_eIOpPS2Pm_wo9g" />
     <title>Can Buïgas</title>
     <!-- BANDERAS SVG - IMPORTANTE: Esta línea va PRIMERA -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
@@ -401,8 +400,16 @@
             <div class="hero-overlay">
                 <div class="hero-content">
                     <h2 class="hero-title" data-i18n="heroTitle">Can Buïgas</h2>
-                    <a href="#menu" class="btn-primary" data-i18n="viewMenu">Carta</a>
-                    <a href="#daily-menu" class="btn-secondary" data-i18n="viewDailyMenu">Menú del Día</a>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn-hero btn-hero-primary" data-i18n="viewMenu">
+                            <span class="btn-icon">📋</span>
+                            <span>Carta</span>
+                        </a>
+                        <a href="#daily-menu" class="btn-hero btn-hero-secondary" data-i18n="viewDailyMenu">
+                            <span class="btn-icon">⭐</span>
+                            <span>Menú del Día</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -411,23 +418,17 @@
         <section id="menu" class="section">
             <div class="container">
                 <h2 class="section-title" data-i18n="ourMenu">Nuestra Carta</h2>
+                <p class="section-subtitle" data-i18n="menuSubtitle">Descubre nuestros platos principales y especialidades</p>
                 
                 <div class="menu-categories">
                     <button class="category-btn active" data-category="all" data-i18n="all">Todos</button>
-                    <button class="category-btn" data-category="sugerencias" data-i18n="suggestions">Sugerencias</button>
-                    <button class="category-btn" data-category="menus" data-i18n="menus">Menús</button>
-                    <button class="category-btn" data-category="starters" data-i18n="starters">Entrantes</button>
-                    <button class="category-btn" data-category="main" data-i18n="mainCourses">Platos Principales</button>
+                    <button class="category-btn" data-category="especialidades" data-i18n="specialties">Especialidades</button>
+                    <button class="category-btn" data-category="entrantes" data-i18n="starters">Entrantes</button>
                     <button class="category-btn" data-category="ensaladas" data-i18n="salads">Ensaladas</button>
-                    <button class="category-btn" data-category="mariscos" data-i18n="seafood">Mariscos</button>
                     <button class="category-btn" data-category="arroces" data-i18n="riceDishes">Arroces</button>
-                    <button class="category-btn" data-category="ternera" data-i18n="beef">Ternera</button>
-                    <button class="category-btn" data-category="tortillas" data-i18n="tortillas">Tortillas</button>
-                    <button class="category-btn" data-category="jamon" data-i18n="ham">Jamón</button>
-                    <button class="category-btn" data-category="torradas" data-i18n="torradas">Torradas</button>
+                    <button class="category-btn" data-category="mariscos" data-i18n="seafood">Mariscos</button>
+                    <button class="category-btn" data-category="carnes" data-i18n="meats">Carnes</button>
                     <button class="category-btn" data-category="vinos" data-i18n="wines">Vinos</button>
-                    <button class="category-btn" data-category="desserts" data-i18n="desserts">Postres</button>
-                    <button class="category-btn" data-category="drinks" data-i18n="drinks">Bebidas</button>
                 </div>
                 
                 <div class="menu-items">
@@ -446,127 +447,100 @@
         </section>
 
         <!-- Sección Contacto -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="contactUs">Sobre Nosotros</h2>
-                <p class="section-subtitle" data-i18n="contactSubtitle">Reserva tu mesa o solicita información</p>
+<section id="contact" style="background-color: #000; color: #fff; padding: 60px 20px; font-family: 'Montserrat', sans-serif;">
+    <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+        
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; color: #fff;">Sobre Nosotros</h2>
+        <div style="width: 50px; height: 2px; background-color: #D4AF37; margin: 0 auto 20px;"></div>
+        <p style="font-size: 1.1rem; margin-bottom: 60px; color: #ccc;">Reserva tu mesa o solicita información</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; text-align: left; gap: 40px;">
+            
+            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 40px; padding-left: 10%;">
                 
-                <div class="contact-container" style="display: flex; flex-direction: row; gap: 40px; margin-bottom: 40px;">
-                    <!-- Información de contacto organizada -->
-                    <div class="contact-info" style="flex: 1;">
-                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
-                            <i class="fas fa-map-marker-alt" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
-                            <div>
-                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="address">Dirección</h3>
-                                <p style="margin: 0; line-height: 1.5;">Plaça d'Eguilaz, n9<br>Sarrià-Sant Gervasi<br>08017 Barcelona</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
-                            <i class="fas fa-phone" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
-                            <div>
-                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="phone">Teléfono</h3>
-                                <p style="margin: 0 0 10px 0; font-size: 1.3rem; font-weight: bold;">
-                                    <a href="tel:+34622249736" style="color: white; text-decoration: none;">+34 622 249 736</a>
-                                </p>
-                                <p style="margin: 0; font-size: 0.9rem; color: #ccc;">
-                                    Para reservas y consultas
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item" style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
-                            <i class="fas fa-clock" style="color: #D4AF37; font-size: 1.2rem; margin-top: 5px;"></i>
-                            <div>
-                                <h3 style="margin: 0 0 5px 0; color: #D4AF37;" data-i18n="hours">Horario</h3>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-                                    <div>
-                                        <strong style="color: #D4AF37;">Lunes:</strong><br>
-                                        8:00 - 22:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Martes:</strong><br>
-                                        8:00 - 23:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Miércoles:</strong><br>
-                                        8:00 - 23:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Jueves:</strong><br>
-                                        8:00 - 23:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Viernes:</strong><br>
-                                        8:00 - 23:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Sábado:</strong><br>
-                                        8:00 - 23:00
-                                    </div>
-                                    <div>
-                                        <strong style="color: #D4AF37;">Domingo:</strong><br>
-                                        11:00 - 17:00
-                                    </div>
-                                </div>
-                                <p style="margin-top: 15px; font-size: 0.9rem; color: #D4AF37; font-style: italic;">
-                                    <i class="fas fa-info-circle"></i> Horario sujeto a cambios en días festivos
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Espacio para redes sociales o información adicional -->
-                    <div class="contact-form" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                        <div style="background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3);">
-                            <h3 style="color: #D4AF37; margin-top: 0; margin-bottom: 15px;">
-                                <i class="fas fa-calendar-check"></i> Reservas
-                            </h3>
-                            <p style="margin-bottom: 20px; line-height: 1.6;">
-                                Para hacer una reserva, por favor llámenos directamente al teléfono indicado. 
-                                Las reservas online no están disponibles actualmente.
-                            </p>
-                            
-                            <div style="text-align: center; margin-top: 25px;">
-                                <a href="tel:+34622249736" style="display: inline-flex; align-items: center; gap: 10px; background: #D4AF37; color: black; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
-                                    <i class="fas fa-phone"></i>
-                                    Reservar por teléfono
-                                </a>
-                            </div>
-                            
-                            <div style="margin-top: 25px;">
-                                <h4 style="color: #D4AF37; margin-bottom: 10px;">Síguenos</h4>
-                                <div style="display: flex; gap: 15px;">
-                                    <a href="https://www.facebook.com/franklin.lascanoruiz" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                                        <i class="fab fa-facebook"></i> Facebook
-                                    </a>
-                                    <a href="https://www.instagram.com/restaurantecanbuigas/?hl=es" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                                        <i class="fab fa-instagram"></i> Instagram
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color: #D4AF37; font-size: 1.5rem;"></i>
+                    <div>
+                        <h3 style="color: #D4AF37; margin: 0 0 10px 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Dirección</h3>
+                        <p style="margin: 0; line-height: 1.6; color: #fff;">
+                            Plaça d'Eguilaz, n9<br>
+                            Sarrià-Sant Gervasi<br>
+                            08017 Barcelona
+                        </p>
                     </div>
                 </div>
-                
-                <!-- Mapa -->
-                <div class="map-container">
-                    <h3 style="color: #D4AF37; text-align: center; margin-bottom: 20px;">Ubicación de Can Buïgas</h3>
-                    <div class="map">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.1475730001174!2d2.129970976886204!3d41.39513627926307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4991c4a5f8cd7%3A0x392c3f830c160bbf!2sCan%20Bu%C3%AFgas!5e0!3m2!1ses!2ses!4v1712345678901!5m2!1ses!2ses"
-                            width="100%" 
-                            height="400" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Ubicación de Can Buïgas en Google Maps">
-                        </iframe>
+
+                <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <i class="fas fa-phone-alt" style="color: #D4AF37; font-size: 1.5rem;"></i>
+                    <div>
+                        <h3 style="color: #D4AF37; margin: 0 0 10px 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Teléfono</h3>
+                        <p style="margin: 0; font-size: 1.5rem; font-weight: 700;">+34 622 249 736</p>
+                        <p style="margin: 5px 0 0 0; color: #888; font-size: 0.9rem;">Para reservas y consultas</p>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <div style="flex: 1; min-width: 320px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;">
+                    <i class="fas fa-clock" style="color: #D4AF37; font-size: 1.5rem;"></i>
+                    <h3 style="color: #D4AF37; margin: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Horario</h3>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; color: #fff;">
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Lunes:</span><br>
+                        8:00 - 22:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Martes:</span><br>
+                        8:00 - 23:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Miércoles:</span><br>
+                        8:00 - 23:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Jueves:</span><br>
+                        8:00 - 23:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Viernes:</span><br>
+                        8:00 - 23:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Sábado:</span><br>
+                        8:00 - 23:00
+                    </div>
+                    <div>
+                        <span style="color: #D4AF37; font-weight: 600;">Domingo:</span><br>
+                        11:00 - 17:00
+                    </div>
+                </div>
+                
+                <p style="margin-top: 30px; font-size: 0.85rem; color: #D4AF37; font-style: italic;">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i> Horario sujeto a cambios en días festivos
+                </p>
+            </div>
+
+        </div>
+    </div>
+     <div class="map-container">
+            <h3 style="color: #D4AF37; text-align: center; margin-bottom: 20px;">Ubicación de Can Buïgas</h3>
+            <div class="map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.1475730001174!2d2.129970976886204!3d41.39513627926307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4991c4a5f8cd7%3A0x392c3f830c160bbf!2sCan%20Bu%C3%AFgas!5e0!3m2!1ses!2ses!4v1712345678901!5m2!1ses!2ses"
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación de Can Buïgas en Google Maps">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 
     <!-- Footer -->

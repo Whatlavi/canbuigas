@@ -2,7 +2,7 @@
 // SISTEMA COMPLETO DE MENÚ DEL DÍA
 // ============================================
 
-// Datos de traducción COMPLETOS CON 12 IDIOMAS
+// Datos de traducción COMPLETOS CON 13 IDIOMAS
 const translations = {
     es: {
         // Selector de idioma
@@ -3328,7 +3328,7 @@ function printDailyMenu() {
                     window.print();
                 }, 500);
             };
-        </script>
+        <\/script>
         </body>
         </html>
     `;
@@ -3387,6 +3387,8 @@ function copyToClipboard(text) {
 // ============================================
 // FUNCIONES DE IDIOMA Y NAVEGACIÓN
 // ============================================
+
+let currentLanguage = 'es'; // Variable global para el idioma actual
 
 // Función auxiliar para obtener nombre del idioma
 function getLanguageName(lang) {
